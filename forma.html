@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+  //  Expresión regular para compararla con el correo del usuario.
+  var expr = new RegExp(/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/);
+  $(document).ready(function() {
+    $('#envio').click(function() {
+      var nombre = $('#nombreApellido').val();
+      var correo = $('#correo').val();
+      var confCorreo = $('#repcorreo').val();
+      var telefono = $('#telefono').val();
+      var empresa = $('#empresa').val();
+      var puesto = $('#puesto').val();
+      if (correo == "" || !expr.test(correo)) {
+        alert("Tu correo es inválido.")
+        return false;
+      } else if (confCorreo != correo) {
+        alert("Tus correos no coinciden :( Revísalos.")
+        return false;
+      } else if (nombre == '' || telefono == '' || empresa == '' || puesto == '') {
+        alert("Necesitamos todos tus datos :( Escríbelos por favor.")
+        return false;
+      }
+    });
+  });
+</script>
+<div id="contenedor">
+  <form id="campos" method="post" autocomplete="off">
+    <label>Nombre y apellido:</label>
+    <br>
+    <input type="text" id="nombreApellido">
+    <br>
+    <label>Correo:</label>
+    <br>
+    <input type="email" name="correo" id="correo">
+    <br>
+    <label>Repite tu correo:</label>
+    <br>
+    <input type="email" name="repetirCorreo" id="repcorreo">
+    <br>
+    <label>Teléfono: </label>
+    <br>
+    <input type="text" id="telefono">
+    <br>
+    <label>Empresa:</label>
+    <br>
+    <input type="text" id="empresa">
+    <br>
+    <label>Puesto:</label>
+    <br>
+    <input type="text" id="puesto">
+    <br>
+    <br>
+    <input type="submit" id="envio" value="Mis datos son correctos">
+  </form>
+</div>
